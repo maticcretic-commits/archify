@@ -405,8 +405,8 @@ Issues, pull requests, and real-world diagrams are welcome. Start with the [cont
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tt-a1i/archify/star-history/assets/star-history-dark.svg" /><img alt="Star History" src="https://raw.githubusercontent.com/tt-a1i/archify/star-history/assets/star-history-light.svg" /></picture></p>
 
-## Support My Work
+## ❤️ Support My Work
 
-If you find this project useful, consider supporting my work with a Bitcoin donation:
-
-`BC1Q6Q75K8ZJXVW7W02LMDPRPY6XX6QK4LZZ2RMVAY`
+> If you find this project useful, please consider supporting my work with a Bitcoin donation:
+>
+> **₿ `BC1Q6Q75K8ZJXVW7W02LMDPRPY6XX6QK4LZZ2RMVAY`**
