@@ -1,0 +1,256 @@
+{
+ "boundaries": [
+  {
+   "kind": "region",
+   "label": "Automation Platform",
+   "wraps": [
+    "webhook",
+    "dedupe",
+    "classifier",
+    "errorflow"
+   ]
+  },
+  {
+   "kind": "region",
+   "label": "Data and Messaging",
+   "wraps": [
+    "sheets",
+    "crm",
+    "slack"
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "dot": "emerald",
+   "items": [
+    "Webhook receives the lead and normalizes fields",
+    "Dedupe drops repeat emails before AI scoring",
+    "AI classifier scores the lead and fans out to Sheets, CRM, and Slack"
+   ],
+   "title": "Pipeline"
+  },
+  {
+   "dot": "rose",
+   "items": [
+    "Duplicate emails never reach the AI classifier",
+    "The error workflow catches any node failure and alerts the team"
+   ],
+   "title": "Reliability"
+  }
+ ],
+ "components": [
+  {
+   "id": "lead-form",
+   "label": "Lead Form",
+   "pos": [
+    40,
+    300
+   ],
+   "size": [
+    120,
+    64
+   ],
+   "sublabel": "website",
+   "type": "external"
+  },
+  {
+   "id": "webhook",
+   "label": "Webhook Trigger",
+   "pos": [
+    240,
+    300
+   ],
+   "size": [
+    150,
+    64
+   ],
+   "sublabel": "n8n",
+   "type": "backend"
+  },
+  {
+   "id": "dedupe",
+   "label": "Dedupe Check",
+   "pos": [
+    490,
+    300
+   ],
+   "size": [
+    140,
+    64
+   ],
+   "sublabel": "email lookup",
+   "type": "backend"
+  },
+  {
+   "id": "classifier",
+   "label": "AI Classifier",
+   "pos": [
+    730,
+    300
+   ],
+   "size": [
+    140,
+    64
+   ],
+   "sublabel": "scores and routes",
+   "type": "backend"
+  },
+  {
+   "id": "sheets",
+   "label": "Google Sheets",
+   "pos": [
+    920,
+    165
+   ],
+   "size": [
+    150,
+    64
+   ],
+   "sublabel": "lead store",
+   "type": "database"
+  },
+  {
+   "id": "crm",
+   "label": "CRM",
+   "pos": [
+    920,
+    435
+   ],
+   "size": [
+    150,
+    64
+   ],
+   "sublabel": "contact sync",
+   "type": "backend"
+  },
+  {
+   "id": "slack",
+   "label": "Slack",
+   "pos": [
+    1120,
+    300
+   ],
+   "size": [
+    110,
+    64
+   ],
+   "sublabel": "#sales alerts",
+   "type": "messagebus"
+  },
+  {
+   "id": "errorflow",
+   "label": "Error Workflow",
+   "pos": [
+    420,
+    520
+   ],
+   "size": [
+    150,
+    64
+   ],
+   "sublabel": "on failure",
+   "type": "backend"
+  }
+ ],
+ "connections": [
+  {
+   "from": "lead-form",
+   "id": "form-to-webhook",
+   "label": "submits lead",
+   "to": "webhook"
+  },
+  {
+   "from": "webhook",
+   "id": "webhook-to-dedupe",
+   "label": "normalized lead",
+   "to": "dedupe"
+  },
+  {
+   "from": "dedupe",
+   "id": "dedupe-to-classifier",
+   "label": "unique lead",
+   "to": "classifier"
+  },
+  {
+   "from": "classifier",
+   "id": "classifier-to-sheets",
+   "label": "appends lead row",
+   "to": "sheets",
+   "fromSide": "top",
+   "toSide": "bottom"
+  },
+  {
+   "from": "classifier",
+   "id": "classifier-to-crm",
+   "label": "syncs contact",
+   "to": "crm",
+   "fromSide": "bottom",
+   "toSide": "top"
+  },
+  {
+   "from": "classifier",
+   "id": "classifier-to-slack",
+   "label": "posts hot lead",
+   "to": "slack",
+   "variant": "emphasis",
+   "fromSide": "right",
+   "toSide": "left",
+   "labelDy": -34
+  },
+  {
+   "from": "webhook",
+   "id": "webhook-to-errorflow",
+   "label": "failure hook",
+   "to": "errorflow",
+   "variant": "dashed"
+  },
+  {
+   "from": "errorflow",
+   "id": "errorflow-to-slack",
+   "label": "alerts team",
+   "to": "slack",
+   "fromSide": "right",
+   "toSide": "bottom",
+   "via": [
+    [
+     1175,
+     552
+    ]
+   ]
+  }
+ ],
+ "diagram_type": "architecture",
+ "meta": {
+  "locale": "en",
+  "output": "ai-automation-pipeline.html",
+  "quality_profile": "showcase",
+  "title": "AI Lead Automation",
+  "views": [
+   {
+    "focus": [
+     "lead-form",
+     "webhook",
+     "dedupe",
+     "classifier",
+     "sheets",
+     "crm"
+    ],
+    "id": "lead-path",
+    "label": "Lead path",
+    "note": "Follow a new lead from form submit through dedupe and AI scoring to Sheets and CRM."
+   },
+   {
+    "focus": [
+     "webhook",
+     "errorflow",
+     "slack"
+    ],
+    "id": "failure-handling",
+    "label": "Failure handling",
+    "note": "Any node failure fires the error workflow, which alerts the team on Slack."
+   }
+  ]
+ },
+ "schema_version": 1
+}
