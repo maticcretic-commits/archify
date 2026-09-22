@@ -6,6 +6,9 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 
 > Development identity: `v2.17.0-dev.1`. Not a stable release.
 
+### Added
+- **AI Lead Automation gallery example.** New `archify/examples/ai-automation-pipeline.architecture.json` showcase example (delivered to `ai-automation-pipeline.html`): a webhook lead flows through dedupe and an AI classifier, fanning out to Sheets, CRM, and Slack, with an error workflow alerting the team on failure. Registered as a gallery case in `website/src/data/gallery-presentation.mjs`.
+
 ### Fixed
 - **Architecture Delta baseline arrowheads (#433).** Removed and rerouted baseline relationships retain their marker definitions in the composed Delta SVG, preserving their authored direction alongside current relationships.
 - **Compare rollback recovery (#438).** If restoring a previous output fails, compare preserves its recovery directory and reports backup-to-target paths instead of deleting the remaining backups during cleanup.
