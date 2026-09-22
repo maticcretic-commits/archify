@@ -145,6 +145,19 @@ export const CASES = [
     descriptionEn: 'A classic AWS web stack with edge delivery, authentication, API services, cache, persistence, and background work.',
     descriptionZh: '经典 AWS Web 栈：边缘分发、鉴权、API 服务、缓存、持久化与后台任务。',
   },
+  {
+    id: 'ai-lead-automation',
+    type: 'architecture',
+    input: 'ai-automation-pipeline.architecture.json',
+    output: 'ai-automation-pipeline.html',
+    focus: 'classifier',
+    view: 'lead-path',
+    accent: '#a5b4fc',
+    titleEn: 'AI Lead Automation',
+    titleZh: 'AI 线索自动化',
+    descriptionEn: 'A webhook lead flows through dedupe and an AI classifier, fanning out to Sheets, CRM, and Slack — with an error workflow alerting the team on failure.',
+    descriptionZh: 'Webhook 线索经过去重与 AI 分类，分发至表格、CRM 和 Slack；任意节点失败时由错误工作流向团队告警。',
+  },
 ];
 
 const TYPE_ACCENTS = {
