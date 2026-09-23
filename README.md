@@ -410,3 +410,6 @@ Issues, pull requests, and real-world diagrams are welcome. Start with the [cont
 > If you find this project useful, please consider supporting my work with a Bitcoin donation:
 >
 > **₿ `BC1Q6Q75K8ZJXVW7W02LMDPRPY6XX6QK4LZZ2RMVAY`**
+
+## ☕ Support my work
+If this project was useful, you can support it with Bitcoin: `bc1q6q75k8zjxvw7w02lmdprpy6xx6qk4lzz2rmvay`
